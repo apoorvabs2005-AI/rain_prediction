@@ -28,12 +28,11 @@ set_page_config("AI Weather Predictions", layout="wide")
 def get_forecasting_engine():
     return Predictor()
 
-@st.cache_data
-def load_historical_data():
-    dataset_path = os.path.join("dataset", "rainfall.csv")
-    if os.path.exists(dataset_path):
-        return pd.read_csv(dataset_path)
-    return None
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+MODEL_PATH = BASE_DIR / "models" / "best_model.pkl"
+model = joblib.load(MODEL_PATH)
 
 # Load components
 predictor = get_forecasting_engine()
