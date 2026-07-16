@@ -29,11 +29,7 @@ set_page_config("AI Weather Predictions", layout="wide")
 def get_forecasting_engine():
     return Predictor()
 
-from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
-MODEL_PATH = BASE_DIR / "models" / "best_model.pkl"
-model = joblib.load(MODEL_PATH)
 
 # Load components
 predictor = get_forecasting_engine()
